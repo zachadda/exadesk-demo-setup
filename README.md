@@ -1,6 +1,6 @@
 # EXADesk
 
-An Exasol 2025.2.1 database running on a Minisforum mini PC — lovingly named **EXADesk**. Built for price-performance demos, proving you don't need a rack of servers to run a high-performance analytical database.
+An Exasol 2025.2.1 database running on a Minisforum mini PC — lovingly named **EXADesk**. Built for price-performance demos, proving you don't need a rack of servers or an expensive cloud compute database to run a high-performance analytical database.
 
 ## What is this?
 
