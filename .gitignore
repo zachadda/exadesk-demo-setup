@@ -1,0 +1,4 @@
+*.pem
+*.exasol_license
+*.tar.gz
+*.bak
