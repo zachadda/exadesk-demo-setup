@@ -76,11 +76,18 @@ sudo ufw allow in on tailscale0
 sudo ufw enable
 ```
 
+**Desktop (RDP):**
+- Desktop environment: **xfce4** (GNOME causes black screen over xrdp)
+- RDP server: `xrdp` (port 3389)
+- Connect via any RDP client to `192.168.5.59`
+- Session config: `~/.xsession` → `startxfce4`
+
 **Services:**
 - `c4.service` — Exasol c4 server
 - `c4_cloud_command.service` — Exasol deployment manager (depends on `network-online.target`)
 - `exasol-admin-ui.service` — Admin UI (uses bundled c4 4.29.0)
 - `tailscaled.service` — Tailscale daemon
+- `xrdp.service` — RDP server for remote desktop access
 
 ### 2. EC2 Instance (HAProxy Relay)
 
@@ -222,6 +229,20 @@ If the issue persists, check that the c4 socket symlink exists:
 ```bash
 ls -la ~/.ccc/x/u/branchr/ccc+*/etc/c4_socket
 ```
+
+### RDP black screen
+GNOME does not work reliably with xrdp — use xfce4 instead:
+```bash
+sudo apt-get install -y xfce4 xfce4-goodies
+echo "startxfce4" > ~/.xsession
+chmod +x ~/.xsession
+sudo systemctl restart xrdp-sesman
+sudo systemctl restart xrdp
+```
+Disconnect and reconnect your RDP client.
+
+### RDP not connecting after network change
+If the Minisforum was moved or switched from WiFi to ethernet, the LAN IP may have changed (different MAC address = new DHCP lease). Check your Eero app for the new IP and update the DHCP reservation.
 
 ---
 
