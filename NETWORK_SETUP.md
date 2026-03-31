@@ -19,7 +19,7 @@ EC2 t3.small (52.28.97.243) — Frankfurt
         |
         | WireGuard encrypted tunnel
         |
-Minisforum (192.168.5.58 LAN / 100.117.230.47 Tailscale)
+Minisforum (192.168.5.59 LAN / 100.117.230.47 Tailscale)
   ├── Exasol 2025.2.1 (c4 4.29.0)
   ├── Admin UI (port 8443)
   ├── Tailscale
@@ -46,8 +46,8 @@ Minisforum (192.168.5.58 LAN / 100.117.230.47 Tailscale)
 ### From home LAN (direct)
 | Service | Address | Protocol |
 |---------|---------|----------|
-| Database | `192.168.5.58:8563` | JDBC/SQL |
-| Admin UI | `https://192.168.5.58:8443` | HTTPS |
+| Database | `192.168.5.59:8563` | JDBC/SQL |
+| Admin UI | `https://192.168.5.59:8443` | HTTPS |
 
 ### Credentials
 - **Database:** user `sys` / password `Exasol123!`
@@ -65,7 +65,7 @@ Minisforum (192.168.5.58 LAN / 100.117.230.47 Tailscale)
 - `/dev/nvme0n1p3-p6` — 4x 231GB Exasol data
 
 **Network:**
-- LAN IP: `192.168.5.58` (DHCP reservation on Eero router, MAC `c4:8b:66:54:37:cb`)
+- LAN IP: `192.168.5.59` (DHCP reservation on Eero router, MAC `c4:8b:66:54:37:cb`)
 - Tailscale IP: `100.117.230.47`
 
 **Firewall (UFW):**
@@ -194,7 +194,7 @@ sudo systemctl restart c4_cloud_command
 
 ### Verify database is running
 ```bash
-nc -zv 192.168.5.58 8563
+nc -zv 192.168.5.59 8563
 # or check DWAd log:
 sudo tail ~/.ccc/play/local/*/main/11/data/logs/logd/DWAd.log
 ```
