@@ -221,17 +221,23 @@ EOF
     sudo tee /etc/systemd/system/exasol_shutdown.service > /dev/null <<EOF
 [Unit]
 Description=Stop Exasol Database on Shutdown
+DefaultDependencies=no
+Conflicts=shutdown.target reboot.target halt.target
 Before=shutdown.target reboot.target halt.target
+After=c4_cloud_command.service network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/exasol_shutdown.sh
+RemainAfterExit=yes
+ExecStart=/bin/true
+ExecStop=/usr/local/bin/exasol_shutdown.sh
+TimeoutStopSec=300
 
 [Install]
-WantedBy=halt.target reboot.target shutdown.target
+WantedBy=multi-user.target
 EOF
     sudo systemctl daemon-reload
-    sudo systemctl enable exasol_shutdown.service
+    sudo systemctl enable --now exasol_shutdown.service
     echo -e "${GREEN}[INFO] Shutdown service configured.${RESET}"
 }
 
