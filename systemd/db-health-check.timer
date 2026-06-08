@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Exasol DB health check on boot and on schedule
+Requires=db-health-check.service
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=1h
+Unit=db-health-check.service
+
+[Install]
+WantedBy=timers.target

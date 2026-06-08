@@ -79,6 +79,9 @@ jdbc:exa:52.28.97.243:8563
 | `config` | c4 deployment configuration |
 | `haproxy.cfg` | HAProxy config running on EC2 for remote access relay |
 | `NETWORK_SETUP.md` | Detailed network architecture and troubleshooting guide |
+| `HEALTH_CHECK.md` | Auto-recovery system: verifies TPC-H schemas hourly and on boot, restores from S3 if data is missing |
+| `check-and-restore-db.sh` | Health check + auto-restore script (paired with the systemd units in `systemd/`) |
+| `systemd/` | Service + timer units that run the health check on boot and hourly |
 | `setup.sh` | Original setup script |
 | `ubuntu-c4.sh` | EC2 SSH reference |
 

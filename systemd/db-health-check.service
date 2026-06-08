@@ -1,0 +1,13 @@
+[Unit]
+Description=Exasol DB health check and auto-restore
+Documentation=file:///home/mrexasol/check-and-restore-db.sh
+After=c4_cloud_command.service network-online.target
+Wants=c4_cloud_command.service network-online.target
+
+[Service]
+Type=oneshot
+User=mrexasol
+ExecStart=/home/mrexasol/check-and-restore-db.sh
+StandardOutput=journal
+StandardError=journal
+TimeoutSec=3600
